@@ -2,7 +2,6 @@ package br.com.poc.arq.procrun.proc_runner.data;
 
 import java.sql.CallableStatement;
 import java.sql.SQLException;
-import java.sql.SQLType;
 
 import javax.sql.DataSource;
 
@@ -26,11 +25,8 @@ public class ProcRunnerDaoImpl implements ProcRunnerDao {
             db.getConnection().prepareCall("{ CALL " + proc.getCommand() + " }");
         executor.setQueryTimeout(ConnectionFactory.queryTimeout);
         
-        executor.setString("n1", "1");
-        executor.setString("n2", "2");
-        executor.registerOutParameter("res", java.sql.Types.INTEGER);
+        executor.setString("FIRSTNAME", "Rafael");
+        executor.setString("LASTNAME", "Romero");
         executor.execute();
-
-        System.out.println("OUTPUT: " + executor.getInt("res"));
     }
 }
